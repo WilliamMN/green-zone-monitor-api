@@ -3,7 +3,7 @@ package br.com.wmn.greenzonemonitor.service;
 import br.com.wmn.greenzonemonitor.dto.AutenticarUsuarioDto;
 import br.com.wmn.greenzonemonitor.dto.CriarUsuarioDto;
 import br.com.wmn.greenzonemonitor.dto.UsuarioDetalhadoDto;
-import br.com.wmn.greenzonemonitor.exception.ConflitException;
+import br.com.wmn.greenzonemonitor.exception.UsuarioConflitException;
 import br.com.wmn.greenzonemonitor.exception.UsuarioNotFoundException;
 import br.com.wmn.greenzonemonitor.factory.UsuarioDetalhadoDtoFactory;
 import br.com.wmn.greenzonemonitor.factory.UsuarioFactory;
@@ -29,14 +29,17 @@ public class UsuarioService {
         boolean emailExiste = usuarioRepository.existsByEmail(criarUsuarioDto.getEmail());
 
         if (emailExiste) {
-            throw new ConflitException("O usuário com o email informado já existe.");
+            throw new UsuarioConflitException("O usuário com o email informado já existe.");
         }
 
         usuarioRepository.save(usuarioFactory.createUsuario(criarUsuarioDto));
     }
 
-    public List<Usuario> listarTodos() {
-        return usuarioRepository.findAll();
+    public List<UsuarioDetalhadoDto> listarTodos() {
+        return usuarioRepository.findAll()
+                .stream()
+                .map(usuarioDetalhadoDtoFactory::detalharUsuario)
+                .toList();
     }
 
     public UsuarioDetalhadoDto autenticar(AutenticarUsuarioDto autenticarUsuarioDto) {

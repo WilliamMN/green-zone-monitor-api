@@ -3,7 +3,6 @@ package br.com.wmn.greenzonemonitor.controller;
 import br.com.wmn.greenzonemonitor.dto.AutenticarUsuarioDto;
 import br.com.wmn.greenzonemonitor.dto.CriarUsuarioDto;
 import br.com.wmn.greenzonemonitor.dto.UsuarioDetalhadoDto;
-import br.com.wmn.greenzonemonitor.model.Usuario;
 import br.com.wmn.greenzonemonitor.service.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -20,7 +19,7 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> listar() {
+    public ResponseEntity<List<UsuarioDetalhadoDto>> listar() {
         return ResponseEntity.status(200).body(usuarioService.listarTodos());
     }
 
