@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.CONFLICT)
-public class ConflitException extends RuntimeException {
+public class UsuarioConflitException extends RuntimeException {
 
-    public ConflitException(String mensagem) {
+    public UsuarioConflitException(String mensagem) {
         super(mensagem);
     }
 }
