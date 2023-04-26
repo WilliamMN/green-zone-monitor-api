@@ -5,8 +5,8 @@ import br.com.wmn.greenzonemonitor.dto.CriarUsuarioDto;
 import br.com.wmn.greenzonemonitor.dto.UsuarioDetalhadoDto;
 import br.com.wmn.greenzonemonitor.exception.UsuarioConflitException;
 import br.com.wmn.greenzonemonitor.exception.UsuarioNotFoundException;
-import br.com.wmn.greenzonemonitor.factory.UsuarioDetalhadoDtoFactory;
-import br.com.wmn.greenzonemonitor.factory.UsuarioFactory;
+import br.com.wmn.greenzonemonitor.mapper.UsuarioDetalhadoDtoMapper;
+import br.com.wmn.greenzonemonitor.mapper.UsuarioMapper;
 import br.com.wmn.greenzonemonitor.model.Usuario;
 import br.com.wmn.greenzonemonitor.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
@@ -20,9 +20,9 @@ public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
 
-    private final UsuarioFactory usuarioFactory;
+    private final UsuarioMapper usuarioMapper;
 
-    private final UsuarioDetalhadoDtoFactory usuarioDetalhadoDtoFactory;
+    private final UsuarioDetalhadoDtoMapper usuarioDetalhadoDtoMapper;
 
     public void cadastrar(CriarUsuarioDto criarUsuarioDto) {
 
@@ -32,13 +32,13 @@ public class UsuarioService {
             throw new UsuarioConflitException("O usuário com o email informado já existe.");
         }
 
-        usuarioRepository.save(usuarioFactory.createUsuario(criarUsuarioDto));
+        usuarioRepository.save(usuarioMapper.createUsuario(criarUsuarioDto));
     }
 
     public List<UsuarioDetalhadoDto> listarTodos() {
         return usuarioRepository.findAll()
                 .stream()
-                .map(usuarioDetalhadoDtoFactory::detalharUsuario)
+                .map(usuarioDetalhadoDtoMapper::detalharUsuario)
                 .toList();
     }
 
@@ -47,6 +47,6 @@ public class UsuarioService {
                 .findByEmailAndSenha(autenticarUsuarioDto.getEmail(), autenticarUsuarioDto.getSenha())
                 .orElseThrow(UsuarioNotFoundException::new);
 
-        return usuarioDetalhadoDtoFactory.detalharUsuario(usuario);
+        return usuarioDetalhadoDtoMapper.detalharUsuario(usuario);
     }
 }

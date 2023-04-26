@@ -1,11 +1,11 @@
-package br.com.wmn.greenzonemonitor.factory;
+package br.com.wmn.greenzonemonitor.mapper;
 
 import br.com.wmn.greenzonemonitor.dto.UsuarioDetalhadoDto;
 import br.com.wmn.greenzonemonitor.model.Usuario;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UsuarioDetalhadoDtoFactory {
+public class UsuarioDetalhadoDtoMapper {
 
     public UsuarioDetalhadoDto detalharUsuario(Usuario model) {
         return UsuarioDetalhadoDto.builder()
