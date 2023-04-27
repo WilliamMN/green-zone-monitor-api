@@ -1,4 +1,4 @@
-package br.com.wmn.greenzonemonitor.dto;
+package br.com.wmn.greenzonemonitor.dto.usuario;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

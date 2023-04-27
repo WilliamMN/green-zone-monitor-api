@@ -1,0 +1,1 @@
+insert into usuario (nome, email, senha) values('William', 'william@email.com', '$2a$10$iDkptniaGzQ7Prj0wgoPpOpcN/NrON2XVyEJVatc48heNcbcgcAd.')

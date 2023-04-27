@@ -1,4 +1,4 @@
-package br.com.wmn.greenzonemonitor.dto;
+package br.com.wmn.greenzonemonitor.dto.usuario;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,13 +7,10 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class UsuarioDetalhadoDto {
+public class UsuarioTokenDto {
 
-    private Long id;
-
+    private Long userId;
     private String nome;
-
-    private String sobrenome;
-
     private String email;
+    private String token;
 }
