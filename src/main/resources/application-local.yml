@@ -1,0 +1,22 @@
+jwt:
+  validity: 3600000
+  secret: ${JWT_SECRET}
+
+spring:
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASWWORD}
+    driverClassName: org.h2.Driver
+  h2:
+    console:
+      enable: true
+  jpa:
+    show-sql: true
+    defer-datasource-initialization: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
