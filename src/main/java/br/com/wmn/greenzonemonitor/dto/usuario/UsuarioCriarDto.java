@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class CriarUsuarioDto {
+public class UsuarioCriarDto {
 
     @NotNull(message = "Campo nome não pode ser nula")
     @NotEmpty(message = "Campo nome não pode ser vazia")
