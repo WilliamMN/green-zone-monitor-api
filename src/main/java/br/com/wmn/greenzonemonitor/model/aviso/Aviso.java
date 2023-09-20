@@ -1,6 +1,6 @@
 package br.com.wmn.greenzonemonitor.model.aviso;
 
-import br.com.wmn.greenzonemonitor.model.usuario.Usuario;
+import br.com.wmn.greenzonemonitor.model.empresa.Empresa;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,5 +23,5 @@ public class Aviso {
     private String descricao;
 
     @ManyToOne
-    private Usuario usuario;
+    private Empresa empresa;
 }

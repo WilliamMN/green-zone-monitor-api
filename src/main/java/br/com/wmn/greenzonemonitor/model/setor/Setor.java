@@ -1,4 +1,4 @@
-package br.com.wmn.greenzonemonitor.model.usuario;
+package br.com.wmn.greenzonemonitor.model.setor;
 
 import br.com.wmn.greenzonemonitor.model.empresa.Empresa;
 import jakarta.persistence.*;
@@ -12,21 +12,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Usuario {
+public class Setor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    private String nome;
-
-    private String sobrenome;
-
-    private String email;
-
-    private String senha;
+    private String descricao;
 
     @ManyToOne
     private Empresa empresa;
 }
-
