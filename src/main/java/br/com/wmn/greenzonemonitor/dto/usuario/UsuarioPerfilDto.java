@@ -9,7 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class UsuarioPerfilDto {
 
-    private Long id;
+    private Integer id;
     private String nome;
     private String sobrenome;
     private String email;

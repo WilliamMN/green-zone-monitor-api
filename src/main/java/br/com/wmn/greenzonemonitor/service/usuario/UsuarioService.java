@@ -26,8 +26,6 @@ import java.util.List;
 @AllArgsConstructor
 public class UsuarioService {
 
-    private final UsuarioMapper usuarioMapper;
-
     private final PasswordEncoder passwordEncoder;
 
     private final UsuarioRepository usuarioRepository;
@@ -36,12 +34,9 @@ public class UsuarioService {
 
     private final AuthenticationManager authenticationManager;
 
-    private final UsuarioTokenDtoMapper usuarioTokenDtoMapper;
-
-    private final UsuarioPerfilDtoMapper usuarioPerfilDtoMapper;
 
     public List<UsuarioPerfilDto> listar() {
-        return usuarioRepository.findAll().stream().map(usuarioPerfilDtoMapper::of).toList();
+        return usuarioRepository.findAll().stream().map(UsuarioPerfilDtoMapper::of).toList();
     }
 
     public void cadastrar(UsuarioCriarDto usuarioCriarDto) {
@@ -54,7 +49,7 @@ public class UsuarioService {
 
         usuarioCriarDto.setSenha(passwordEncoder.encode(usuarioCriarDto.getSenha()));
 
-        usuarioRepository.save(usuarioMapper.of(usuarioCriarDto));
+        usuarioRepository.save(UsuarioMapper.of(usuarioCriarDto));
     }
 
     public UsuarioTokenDto autenticar(UsuarioLoginDto usuarioLoginDto) {
@@ -64,13 +59,13 @@ public class UsuarioService {
         final Authentication authentication = this.authenticationManager.authenticate(credentials);
 
         Usuario usuarioAutenticado = usuarioRepository.findByEmail(usuarioLoginDto.getEmail())
-                .orElseThrow(UsuarioNotFoundException::new);
+                .orElseThrow(() -> new UsuarioNotFoundException(usuarioLoginDto.getEmail()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         final String token = gerenciadorTokenJwt.generateToken(authentication);
 
-        return usuarioTokenDtoMapper.of(usuarioAutenticado, token);
+        return UsuarioTokenDtoMapper.of(usuarioAutenticado, token);
     }
 
 }

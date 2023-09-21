@@ -27,6 +27,7 @@ public class GerenciadorTokenJwt {
     public String getUsernameFromToken(String token) {
         return getClaimForToken(token, Claims::getSubject);
     }
+
     public Date getExpirationDateFromToken(String token) {
         return getClaimForToken(token, Claims::getExpiration);
     }

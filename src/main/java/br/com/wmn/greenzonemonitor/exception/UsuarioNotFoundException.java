@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class UsuarioNotFoundException extends RuntimeException {
 
-    public UsuarioNotFoundException() {
-        super("O usuario informado não existe.");
+    public UsuarioNotFoundException(String email) {
+        super(String.format("O usuario com o email %s informado não existe.", email));
     }
 }

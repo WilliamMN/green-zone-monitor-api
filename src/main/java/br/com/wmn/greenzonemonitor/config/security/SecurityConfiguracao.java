@@ -28,13 +28,7 @@ import java.util.Collections;
 @AllArgsConstructor
 @EnableMethodSecurity
 public class SecurityConfiguracao {
-    private static final String ORIGENS_PERMITIDAS = "*";
-
-    private AutenticacaoService autenticacaoService;
-
-    private AutenticacaoEntryPoint autenticacaoJwtEntryPoint;
-
-    public static final AntPathRequestMatcher[] URLS_PERMITIDAS = {
+    protected static final AntPathRequestMatcher[] URLS_PERMITIDAS = {
             new AntPathRequestMatcher("/swagger-ui/**"),
             new AntPathRequestMatcher("/swagger-ui.html"),
             new AntPathRequestMatcher("/swagger-resources"),
@@ -50,6 +44,9 @@ public class SecurityConfiguracao {
             new AntPathRequestMatcher("/h2-console/**"),
             new AntPathRequestMatcher("/error/**")
     };
+    private static final String ORIGENS_PERMITIDAS = "*";
+    private AutenticacaoService autenticacaoService;
+    private AutenticacaoEntryPoint autenticacaoJwtEntryPoint;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -91,7 +88,7 @@ public class SecurityConfiguracao {
 
     @Bean
     public AutenticacaoFilter jwtAuthenticationFilterBean() {
-     return new AutenticacaoFilter(autenticacaoService, jwtAuthenticationUtilBean());
+        return new AutenticacaoFilter(autenticacaoService, jwtAuthenticationUtilBean());
     }
 
     @Bean
