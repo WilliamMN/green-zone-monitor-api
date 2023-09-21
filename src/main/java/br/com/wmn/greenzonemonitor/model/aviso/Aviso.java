@@ -16,12 +16,12 @@ public class Aviso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String titulo;
 
     private String descricao;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Empresa empresa;
 }
