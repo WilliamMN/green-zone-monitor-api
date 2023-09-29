@@ -1,5 +1,5 @@
 jwt:
-  validity: 3600000
+  validity: 3600
   secret: ${JWT_SECRET}
 
 spring:
