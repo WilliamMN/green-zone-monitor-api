@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class AvisoNotfoundException extends RuntimeException {
-    public AvisoNotfoundException(String message) {
+public class AvisoNotFoundException extends RuntimeException {
+    public AvisoNotFoundException(String message) {
         super(message);
     }
 }

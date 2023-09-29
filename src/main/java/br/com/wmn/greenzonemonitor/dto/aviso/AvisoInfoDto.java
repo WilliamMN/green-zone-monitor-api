@@ -10,7 +10,10 @@ import lombok.Data;
 public class AvisoInfoDto {
 
     private Integer id;
+
     private String titulo;
+
     private String descricao;
+
     private Integer empresaId;
 }

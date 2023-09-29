@@ -23,7 +23,7 @@ public class AvisoController {
     }
 
     @GetMapping("/{empresaId}")
-    public ResponseEntity<List<AvisoInfoDto>> buscarPorEmpresa(@PathVariable Integer empresaId) {
-        return ResponseEntity.status(200).body(avisoServise.buscarPorEmpresaId(empresaId));
+    public ResponseEntity<List<AvisoInfoDto>> listarPorEmpresa(@PathVariable Integer empresaId) {
+        return ResponseEntity.status(200).body(avisoServise.listarPorEmpresaId(empresaId));
     }
 }
